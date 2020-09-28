@@ -1,10 +1,6 @@
-# AWS SSM Helper (Scala CLI App)
+# aws-ssm-cli-app
 
-This is a small project I did to learn more about Scala by using the AWS Java SDK v2.
-
-## Dependency
-
-I've decided to extract all the AWS Helper classes into a separate project that lives in a different github repo ([aws-scala-utils](https://github.com/florianakos/aws-utils-scala)). In order to use this project, one first needs to clone the dependent project and install it to local repository by `mvn install` command in the root directory of the repository.
+This is a small project I did to learn more about Scala by using the AWS Java SDK v2 to interact with AWS Systems Manager to execute automation documents. It uses a custom scala library I've written ([link](https://github.com/florianakos/aws-utils-scala)) which is a direct dependency of this project (and is not published to any public maven repository). In order to run this project one first needs to clone that repo and do a `mvn install` to have it available for import in this project.
 
 ## Build & Run
 

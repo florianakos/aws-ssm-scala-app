@@ -12,18 +12,20 @@ import picocli.CommandLine
 import picocli.CommandLine.{Command, Option, Parameters}
 
 
-@Command(name = "SsmHelperApp",  version = Array("SsmHelper Scala App v0.0.1"),  mixinStandardHelpOptions = true,
-  description = Array("Scala CLI app that can run SSM Automation documents"))
+@Command(name = "SsmHelperApp",  
+         version = Array("SsmHelper Scala App v0.0.1"),
+         mixinStandardHelpOptions = true,
+         description = Array("Scala CLI app that can run SSM Automation documents"))
 class SsmCliParser extends Callable[Unit] with LazyLogging {
   
   @Option(names = Array("-D", "--document"),
-    description = Array("Name of the SSM Automation document to execute"))
+          description = Array("Name of the SSM Automation document to execute"))
   private var documentName = new String
 
   @Parameters(index = "0..*", 
-    arity = "0..*", 
-    paramLabel = "<parameter1=value1> <parameter2=value2>",
-    description = Array("Key=Value parameters to pass to AWS SSM Document as document inputs"))
+              arity = "0..*", 
+              paramLabel = "<parameter1=value1> <parameter2=value2>",
+              description = Array("Key=Value parameters to use as Input Params"))
   private val parameters: util.ArrayList[String] = null
 
   private def process(params: util.ArrayList[String]): util.Map[String, util.List[String]] = {
@@ -59,7 +61,7 @@ class SsmCliParser extends Callable[Unit] with LazyLogging {
 }
 
 
-object SsmCliApp extends App with LazyLogging  {
+object A extends App with LazyLogging  {
 
   System.exit(new CommandLine(new SsmCliParser()).execute(args: _*))
   

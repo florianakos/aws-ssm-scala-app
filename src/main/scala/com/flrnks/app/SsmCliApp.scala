@@ -37,16 +37,17 @@ class SsmCliParser extends Callable[Unit] with LazyLogging {
   def call(): Unit = {
     val startTime = System.currentTimeMillis
 
-    val conf: Config = ConfigFactory.load()
-    val ssmHelper = SsmAutomationHelper.newInstance(conf)
-    
     if (documentName == "" | parameters == null ) {
       logger.error("ERROR: missing document(D) flag or extra Input Parameters for SSM Document")
       sys.exit(1)
     }
     
     try {
-      Await.result(ssmHelper.runDocumentWithParameters(documentName, process(parameters)), 10.minutes)
+      Await.result(SsmAutomationHelper
+          .newInstance(ConfigFactory.load())
+          .runDocumentWithParameters(documentName, process(parameters)), 
+        10.minutes
+      )
     } catch {
       case e: Exception =>
         logger.error(s"SSM Execution failed with error message: ${e.getMessage}")
